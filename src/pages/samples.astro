@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WorkCard from "../components/WorkCard.astro";
+import { sampleCategories, samplesByCategory } from "../data/samples";
+---
+
+<BaseLayout
+  title="Samples"
+  description="Academic, business, volunteer, formal, and creative work samples."
+>
+  <div class="container">
+    <header class="page-intro animate-in">
+      <span class="section-label">Samples</span>
+      <h1>Work & creative</h1>
+      <p>
+        Placeholder galleries across academic, business, volunteer, formal, and
+        creative work. Replace each item with your real projects.
+      </p>
+    </header>
+
+    <nav class="category-nav glass animate-in delay-1" aria-label="Sample categories">
+      {
+        sampleCategories.map((cat) => (
+          <a href={`#${cat.id}`}>{cat.label}</a>
+        ))
+      }
+    </nav>
+
+    {
+      sampleCategories.map((cat, index) => {
+        const items = samplesByCategory(cat.id);
+        return (
+          <section
+            class:list={["category-block", "animate-in", `delay-${Math.min(index + 1, 4)}`]}
+            id={cat.id}
+          >
+            <div class="section-header">
+              <h2>{cat.label}</h2>
+              <p>
+                {items.length} placeholder
+                {items.length === 1 ? " piece" : " pieces"} in this category.
+              </p>
+            </div>
+            <div class="card-grid">
+              {items.map((sample) => (
+                <WorkCard sample={sample} />
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.65rem;
+    margin-bottom: 2.5rem;
+    position: sticky;
+    top: calc(var(--nav-height) + 0.75rem);
+    z-index: 10;
+  }
+
+  .category-nav a {
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    transition:
+      background var(--duration) var(--ease-out),
+      color var(--duration) var(--ease-out);
+  }
+
+  .category-nav a:hover {
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--ink);
+  }
+
+  .category-block {
+    margin-bottom: 3rem;
+    scroll-margin-top: calc(var(--nav-height) + 5rem);
+  }
+</style>

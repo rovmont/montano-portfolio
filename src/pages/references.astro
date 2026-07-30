@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ReferenceCard from "../components/ReferenceCard.astro";
+import { references } from "../data/references";
+---
+
+<BaseLayout
+  title="References"
+  description="Professional and academic references — placeholder contacts."
+>
+  <div class="container">
+    <header class="page-intro animate-in">
+      <span class="section-label">References</span>
+      <h1>References</h1>
+      <p>
+        Placeholder people who can speak to your work. Update names, roles, and
+        contact details in the data module when you are ready.
+      </p>
+    </header>
+
+    <div class="card-grid animate-in delay-1">
+      {references.map((reference) => <ReferenceCard reference={reference} />)}
+    </div>
+  </div>
+</BaseLayout>

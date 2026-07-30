@@ -1,0 +1,62 @@
+---
+import type { Recommendation } from "../data/recommendations";
+
+interface Props {
+  recommendation: Recommendation;
+}
+
+const { recommendation } = Astro.props;
+---
+
+<blockquote class="testimonial glass">
+  <p class="quote">“{recommendation.quote}”</p>
+  <footer>
+    <cite>{recommendation.author}</cite>
+    <span>{recommendation.role}, {recommendation.organization}</span>
+  </footer>
+</blockquote>
+
+<style>
+  .testimonial {
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition:
+      transform var(--duration) var(--ease-out),
+      box-shadow var(--duration) var(--ease-out);
+  }
+
+  .testimonial:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(58, 122, 163, 0.14), inset 0 1px 0 var(--glass-highlight);
+  }
+
+  .quote {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.45;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(74, 150, 196, 0.18);
+  }
+
+  cite {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  span {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroIntro from "../components/HeroIntro.astro";
+import ResumePreview from "../components/ResumePreview.astro";
+import SectionSnippet from "../components/SectionSnippet.astro";
+import WorkCard from "../components/WorkCard.astro";
+import ReferenceCard from "../components/ReferenceCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import GlassPanel from "../components/GlassPanel.astro";
+import { profile } from "../data/profile";
+import { samples } from "../data/samples";
+import { references } from "../data/references";
+import { recommendations } from "../data/recommendations";
+import { withBase } from "../utils/paths";
+
+const samplePreview = samples.slice(0, 3);
+const referencePreview = references.slice(0, 2);
+const recommendationPreview = recommendations.slice(0, 2);
+---
+
+<BaseLayout
+  title="Home"
+  description={`${profile.name} — ${profile.tagline}`}
+>
+  <HeroIntro />
+
+  <section class="about container animate-in">
+    <GlassPanel class="about-panel">
+      <span class="section-label">Introduction</span>
+      <h2>Hello</h2>
+      <p>{profile.bio}</p>
+      <p class="meta">{profile.location} · {profile.email}</p>
+    </GlassPanel>
+  </section>
+
+  <ResumePreview />
+
+  <div class="container">
+    <SectionSnippet
+      label="Samples"
+      title="Selected work"
+      description="A quick look at academic, business, volunteer, formal, and creative pieces."
+      href={withBase("/samples")}
+    >
+      {samplePreview.map((sample) => <WorkCard sample={sample} />)}
+    </SectionSnippet>
+
+    <SectionSnippet
+      label="References"
+      title="People who know the work"
+      description="Placeholder contacts who can speak to collaboration and craft."
+      href={withBase("/references")}
+    >
+      {referencePreview.map((reference) => <ReferenceCard reference={reference} />)}
+    </SectionSnippet>
+
+    <SectionSnippet
+      label="Recommendations"
+      title="Kind words"
+      description="Placeholder testimonials — replace with real quotes when you have them."
+      href={withBase("/recommendations")}
+    >
+      {
+        recommendationPreview.map((recommendation) => (
+          <TestimonialCard recommendation={recommendation} />
+        ))
+      }
+    </SectionSnippet>
+  </div>
+</BaseLayout>
+
+<style>
+  .about {
+    padding: 0 0 2rem;
+  }
+
+  .about-panel {
+    max-width: 40rem;
+  }
+
+  .about-panel h2 {
+    font-size: 1.85rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .about-panel p {
+    font-size: 1.05rem;
+  }
+
+  .meta {
+    margin-top: 1rem;
+    font-size: 0.92rem !important;
+    color: var(--ink-soft) !important;
+  }
+</style>

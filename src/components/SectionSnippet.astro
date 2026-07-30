@@ -1,0 +1,67 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+  href: string;
+  cta?: string;
+}
+
+const {
+  label,
+  title,
+  description,
+  href,
+  cta = "View all",
+} = Astro.props;
+---
+
+<section class="snippet">
+  <div class="snippet-head">
+    <div>
+      <span class="section-label">{label}</span>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+    <a class="btn btn-ghost" href={href}>{cta}</a>
+  </div>
+  <div class="snippet-body">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .snippet {
+    padding: 1rem 0 3rem;
+  }
+
+  .snippet-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .snippet-head h2 {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    margin-bottom: 0.35rem;
+  }
+
+  .snippet-head p {
+    max-width: 32rem;
+  }
+
+  .snippet-body {
+    display: grid;
+    gap: 1.15rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    .snippet-head .btn {
+      width: 100%;
+    }
+  }
+</style>

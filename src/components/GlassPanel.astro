@@ -1,0 +1,19 @@
+---
+interface Props {
+  strong?: boolean;
+  class?: string;
+  as?: "div" | "section" | "article";
+}
+
+const { strong = false, class: className = "", as: Tag = "div" } = Astro.props;
+---
+
+<Tag class:list={["glass-panel", strong ? "glass-strong" : "glass", className]}>
+  <slot />
+</Tag>
+
+<style>
+  .glass-panel {
+    padding: 1.5rem;
+  }
+</style>

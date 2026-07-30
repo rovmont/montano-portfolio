@@ -1,0 +1,174 @@
+---
+import GlassPanel from "./GlassPanel.astro";
+import { profile } from "../data/profile";
+import { resume } from "../data/resume";
+---
+
+<section class="resume-section" id="resume">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="section-label">Resume</span>
+      <h2>Preview</h2>
+      <p>A styled placeholder sheet. Swap in your real PDF when ready.</p>
+    </div>
+
+    <GlassPanel strong class="resume-shell animate-in delay-1">
+      <div class="resume-toolbar">
+        <div>
+          <h3>{profile.name}</h3>
+          <p>{resume.headline}</p>
+        </div>
+        <a class="btn btn-sage" href={profile.resumePdfUrl}>Download PDF</a>
+      </div>
+
+      <p class="resume-summary">{resume.summary}</p>
+
+      <div class="resume-grid">
+        <div>
+          <h4>Experience</h4>
+          <ul class="resume-list">
+            {
+              resume.experience.map((item) => (
+                <li>
+                  <div class="item-head">
+                    <strong>{item.role}</strong>
+                    <span>{item.period}</span>
+                  </div>
+                  <p class="org">{item.organization}</p>
+                  <p>{item.summary}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h4>Education</h4>
+          <ul class="resume-list">
+            {
+              resume.education.map((item) => (
+                <li>
+                  <div class="item-head">
+                    <strong>{item.degree}</strong>
+                    <span>{item.period}</span>
+                  </div>
+                  <p class="org">{item.school}</p>
+                </li>
+              ))
+            }
+          </ul>
+
+          <h4 class="skills-heading">Skills</h4>
+          <ul class="skill-chips">
+            {resume.skills.map((skill) => <li>{skill}</li>)}
+          </ul>
+        </div>
+      </div>
+    </GlassPanel>
+  </div>
+</section>
+
+<style>
+  .resume-section {
+    padding: 1rem 0 4rem;
+  }
+
+  .resume-shell {
+    padding: 1.75rem !important;
+  }
+
+  .resume-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(74, 150, 196, 0.2);
+  }
+
+  .resume-toolbar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .resume-toolbar p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .resume-summary {
+    margin-bottom: 1.75rem;
+    max-width: 48rem;
+  }
+
+  .resume-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  h4 {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-500);
+    margin-bottom: 0.85rem;
+  }
+
+  .skills-heading {
+    margin-top: 1.75rem;
+  }
+
+  .resume-list {
+    list-style: none;
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .item-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .item-head span {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .org {
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .skill-chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-chips li {
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(168, 201, 160, 0.35);
+    border: 1px solid rgba(126, 170, 116, 0.35);
+    color: var(--ink);
+  }
+
+  @media (min-width: 800px) {
+    .resume-grid {
+      grid-template-columns: 1.35fr 1fr;
+    }
+
+    .resume-shell {
+      padding: 2.25rem !important;
+    }
+  }
+</style>

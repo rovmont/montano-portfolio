@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { recommendations } from "../data/recommendations";
+---
+
+<BaseLayout
+  title="Recommendations"
+  description="Testimonials and recommendations — placeholder quotes."
+>
+  <div class="container">
+    <header class="page-intro animate-in">
+      <span class="section-label">Recommendations</span>
+      <h1>Recommendations</h1>
+      <p>
+        Placeholder testimonials from collaborators and mentors. Swap these for
+        real quotes when you have permission to share them.
+      </p>
+    </header>
+
+    <div class="card-grid animate-in delay-1">
+      {
+        recommendations.map((recommendation) => (
+          <TestimonialCard recommendation={recommendation} />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
