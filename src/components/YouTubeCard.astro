@@ -1,0 +1,118 @@
+---
+import { profile } from "../data/profile";
+
+const channelName = "Just Rovs";
+---
+
+<a class="youtube-card glass" href={profile.youtubeUrl} target="_blank" rel="noopener noreferrer">
+  <div class="thumb" aria-hidden="true">
+    <span class="play">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </span>
+  </div>
+  <div class="body">
+    <div class="meta">
+      <span class="badge">YouTube</span>
+    </div>
+    <h3>{channelName}</h3>
+    <p>Covers and performances, the same voice from the chorale, just off the risers.</p>
+    <span class="read-more">
+      <span>@justrovs7307</span>
+      <span aria-hidden="true">Watch →</span>
+    </span>
+  </div>
+</a>
+
+<style>
+  .youtube-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    color: inherit;
+    transition:
+      transform var(--duration) var(--ease-out),
+      box-shadow var(--duration) var(--ease-out),
+      border-color var(--duration) var(--ease-out);
+  }
+
+  .youtube-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(58, 122, 163, 0.16), inset 0 1px 0 var(--glass-highlight);
+    border-color: var(--glass-border);
+  }
+
+  .thumb {
+    position: relative;
+    height: 8.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(245, 233, 184, 0.6), transparent 55%),
+      radial-gradient(ellipse at 75% 80%, rgba(143, 196, 230, 0.55), transparent 55%),
+      linear-gradient(135deg, var(--blue-300), var(--sage-300));
+  }
+
+  .play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #c4302b;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 1.4rem;
+    flex: 1;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(196, 48, 43, 0.14);
+    color: #c4302b;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    flex: 1;
+  }
+
+  .read-more {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.35rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(74, 150, 196, 0.18);
+    font-size: 0.88rem;
+    font-weight: 550;
+    color: var(--blue-600);
+  }
+</style>

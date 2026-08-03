@@ -21,6 +21,22 @@ const categoryLabel =
   <ul class="tags">
     {sample.tags.map((tag) => <li>{tag}</li>)}
   </ul>
+  {
+    (sample.url || sample.repoUrl) && (
+      <div class="links">
+        {sample.url && (
+          <a href={sample.url} target="_blank" rel="noopener noreferrer">
+            Live demo
+          </a>
+        )}
+        {sample.repoUrl && (
+          <a href={sample.repoUrl} target="_blank" rel="noopener noreferrer">
+            Repository
+          </a>
+        )}
+      </div>
+    )
+  }
 </article>
 
 <style>
@@ -65,6 +81,11 @@ const categoryLabel =
     color: #8a7320;
   }
 
+  .badge.formal {
+    background: rgba(143, 196, 230, 0.35);
+    color: var(--blue-600);
+  }
+
   .badge.volunteer {
     background: rgba(168, 201, 160, 0.45);
     color: #3d6a36;
@@ -98,5 +119,24 @@ const categoryLabel =
     padding: 0.2rem 0.5rem;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.45);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.35rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(74, 150, 196, 0.18);
+  }
+
+  .links a {
+    font-size: 0.88rem;
+    font-weight: 550;
+    color: var(--blue-600);
+  }
+
+  .links a:hover {
+    color: var(--ink);
   }
 </style>

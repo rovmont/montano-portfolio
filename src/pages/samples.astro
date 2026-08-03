@@ -2,53 +2,47 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import WorkCard from "../components/WorkCard.astro";
 import { sampleCategories, samplesByCategory } from "../data/samples";
+
+const visibleCategories = sampleCategories
+  .map((cat) => ({ ...cat, items: samplesByCategory(cat.id) }))
+  .filter((cat) => cat.items.length > 0);
 ---
 
 <BaseLayout
   title="Samples"
-  description="Academic, business, volunteer, formal, and creative work samples."
+  description="Academic, volunteer, and formal work by Rovin Niño Montaño."
 >
   <div class="container">
     <header class="page-intro animate-in">
       <span class="section-label">Samples</span>
-      <h1>Work & creative</h1>
-      <p>
-        Placeholder galleries across academic, business, volunteer, formal, and
-        creative work. Replace each item with your real projects.
-      </p>
+      <h1>Work samples</h1>
+      <p>A closer look at the projects and roles behind the highlights on the home page.</p>
     </header>
 
     <nav class="category-nav glass animate-in delay-1" aria-label="Sample categories">
       {
-        sampleCategories.map((cat) => (
+        visibleCategories.map((cat) => (
           <a href={`#${cat.id}`}>{cat.label}</a>
         ))
       }
     </nav>
 
     {
-      sampleCategories.map((cat, index) => {
-        const items = samplesByCategory(cat.id);
-        return (
-          <section
-            class:list={["category-block", "animate-in", `delay-${Math.min(index + 1, 4)}`]}
-            id={cat.id}
-          >
-            <div class="section-header">
-              <h2>{cat.label}</h2>
-              <p>
-                {items.length} placeholder
-                {items.length === 1 ? " piece" : " pieces"} in this category.
-              </p>
-            </div>
-            <div class="card-grid">
-              {items.map((sample) => (
-                <WorkCard sample={sample} />
-              ))}
-            </div>
-          </section>
-        );
-      })
+      visibleCategories.map((cat, index) => (
+        <section
+          class:list={["category-block", "animate-in", `delay-${Math.min(index + 1, 4)}`]}
+          id={cat.id}
+        >
+          <div class="section-header">
+            <h2>{cat.label}</h2>
+          </div>
+          <div class="card-grid">
+            {cat.items.map((sample) => (
+              <WorkCard sample={sample} />
+            ))}
+          </div>
+        </section>
+      ))
     }
   </div>
 </BaseLayout>

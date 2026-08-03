@@ -5,8 +5,12 @@ import { withBase, normalizePath } from "../utils/paths";
 const links = [
   { href: "/", label: "Home" },
   { href: "/samples", label: "Samples" },
-  { href: "/references", label: "References" },
-  { href: "/recommendations", label: "Recommendations" },
+  { href: "/creative", label: "Creative" },
+  // References and Recommendations are on hold until there's real content.
+  // Re-enable once src/pages/_references.astro and _recommendations.astro
+  // are un-prefixed (drop the leading underscore to restore the routes).
+  // { href: "/references", label: "References" },
+  // { href: "/recommendations", label: "Recommendations" },
 ];
 
 const current = normalizePath(Astro.url.pathname);

@@ -1,0 +1,160 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostNav from "../../components/PostNav.astro";
+import {
+  creativePosts,
+  formatCreativeDate,
+  getAdjacentCreativePosts,
+  getCreativePost,
+} from "../../data/creative";
+import { withBase } from "../../utils/paths";
+
+export function getStaticPaths() {
+  return creativePosts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = getCreativePost(slug!);
+
+if (!post) {
+  return Astro.redirect(withBase("/creative"));
+}
+
+const { previous, next } = getAdjacentCreativePosts(post.slug);
+const paragraphs = post.body?.split(/\n\n+/).filter(Boolean) ?? [];
+---
+
+<BaseLayout title={post.title} description={post.description}>
+  <article class="container post">
+    <header class="post-header animate-in">
+      <a class="back" href={withBase("/creative")}>← All creative work</a>
+      <span class:list={["kind", post.kind]}>{post.kind}</span>
+      <h1>{post.title}</h1>
+      <p class="dek">{post.description}</p>
+      <time datetime={post.date}>{formatCreativeDate(post.date)}</time>
+    </header>
+
+    <div class="post-body glass-strong animate-in delay-1">
+      {
+        post.kind === "anthology" && post.entries ? (
+          <div class="anthology">
+            {post.entries.map((entry) => (
+              <section class="entry">
+                <h2>{entry.title}</h2>
+                {entry.body.split(/\n\n+/).filter(Boolean).map((para) => (
+                  <p>{para}</p>
+                ))}
+              </section>
+            ))}
+          </div>
+        ) : (
+          paragraphs.map((para) => <p>{para}</p>)
+        )
+      }
+    </div>
+
+    <PostNav previous={previous} next={next} />
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    max-width: 44rem;
+  }
+
+  .post-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .back {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--blue-600);
+    margin-bottom: 1.25rem;
+  }
+
+  .back:hover {
+    color: var(--ink);
+  }
+
+  .kind {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    margin-bottom: 0.85rem;
+    background: rgba(245, 233, 184, 0.55);
+    color: #8a7320;
+  }
+
+  .kind.essay {
+    background: rgba(143, 196, 230, 0.4);
+    color: var(--blue-600);
+  }
+
+  .kind.anthology {
+    background: rgba(168, 201, 160, 0.45);
+    color: #3d6a36;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4.5vw, 2.85rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .dek {
+    font-size: 1.08rem;
+    margin-bottom: 0.85rem;
+    max-width: 38rem;
+  }
+
+  time {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .post-body {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .post-body p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink-muted);
+    margin-bottom: 1.15rem;
+  }
+
+  .post-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .entry {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(74, 150, 196, 0.18);
+  }
+
+  .entry:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  .entry h2 {
+    font-size: 1.15rem;
+    color: var(--blue-600);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 720px) {
+    .post-body {
+      padding: 2.25rem 2rem;
+    }
+  }
+</style>

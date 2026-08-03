@@ -4,23 +4,29 @@ import HeroIntro from "../components/HeroIntro.astro";
 import ResumePreview from "../components/ResumePreview.astro";
 import SectionSnippet from "../components/SectionSnippet.astro";
 import WorkCard from "../components/WorkCard.astro";
-import ReferenceCard from "../components/ReferenceCard.astro";
-import TestimonialCard from "../components/TestimonialCard.astro";
+import CreativeCard from "../components/CreativeCard.astro";
+import YouTubeCard from "../components/YouTubeCard.astro";
+// References and Recommendations snippets are on hold until there's real
+// content — see the commented-out imports and SectionSnippet blocks below.
+// import ReferenceCard from "../components/ReferenceCard.astro";
+// import TestimonialCard from "../components/TestimonialCard.astro";
 import GlassPanel from "../components/GlassPanel.astro";
 import { profile } from "../data/profile";
 import { samples } from "../data/samples";
-import { references } from "../data/references";
-import { recommendations } from "../data/recommendations";
+import { creativePosts } from "../data/creative";
+// import { references } from "../data/references";
+// import { recommendations } from "../data/recommendations";
 import { withBase } from "../utils/paths";
 
-const samplePreview = samples.slice(0, 3);
-const referencePreview = references.slice(0, 2);
-const recommendationPreview = recommendations.slice(0, 2);
+const samplePreview = samples.filter((s) => s.category === "academic").slice(0, 3);
+const creativePreview = creativePosts.slice(-2).reverse();
+// const referencePreview = references.slice(0, 2);
+// const recommendationPreview = recommendations.slice(0, 2);
 ---
 
 <BaseLayout
   title="Home"
-  description={`${profile.name} — ${profile.tagline}`}
+  description={profile.tagline}
 >
   <HeroIntro />
 
@@ -29,7 +35,7 @@ const recommendationPreview = recommendations.slice(0, 2);
       <span class="section-label">Introduction</span>
       <h2>Hello</h2>
       <p>{profile.bio}</p>
-      <p class="meta">{profile.location} · {profile.email}</p>
+      <p class="meta">{profile.location} · {profile.email} · {profile.phone}</p>
     </GlassPanel>
   </section>
 
@@ -39,33 +45,52 @@ const recommendationPreview = recommendations.slice(0, 2);
     <SectionSnippet
       label="Samples"
       title="Selected work"
-      description="A quick look at academic, business, volunteer, formal, and creative pieces."
+      description="Academic builds with live demos: Decimal32, Profs2Pick, LabKita!, and more."
       href={withBase("/samples")}
     >
       {samplePreview.map((sample) => <WorkCard sample={sample} />)}
     </SectionSnippet>
 
     <SectionSnippet
-      label="References"
-      title="People who know the work"
-      description="Placeholder contacts who can speak to collaboration and craft."
-      href={withBase("/references")}
+      label="Creative"
+      title="Writing archive"
+      description="Essays and proses, arranged in the order I wrote them."
+      href={withBase("/creative")}
     >
-      {referencePreview.map((reference) => <ReferenceCard reference={reference} />)}
+      <YouTubeCard />
+      {creativePreview.map((post) => <CreativeCard post={post} />)}
     </SectionSnippet>
 
-    <SectionSnippet
-      label="Recommendations"
-      title="Kind words"
-      description="Placeholder testimonials — replace with real quotes when you have them."
-      href={withBase("/recommendations")}
-    >
-      {
-        recommendationPreview.map((recommendation) => (
-          <TestimonialCard recommendation={recommendation} />
-        ))
-      }
-    </SectionSnippet>
+    {
+      /*
+      References and Recommendations are on hold until there's real content
+      to show. Restore this markup (and the imports/consts above) once
+      src/pages/_references.astro and _recommendations.astro are renamed
+      back to references.astro and recommendations.astro.
+
+      <SectionSnippet
+        label="References"
+        title="People who know the work"
+        description="Placeholder contacts who can speak to collaboration and craft."
+        href={withBase("/references")}
+      >
+        {referencePreview.map((reference) => <ReferenceCard reference={reference} />)}
+      </SectionSnippet>
+
+      <SectionSnippet
+        label="Recommendations"
+        title="Kind words"
+        description="Placeholder testimonials, ready to be swapped for real quotes."
+        href={withBase("/recommendations")}
+      >
+        {
+          recommendationPreview.map((recommendation) => (
+            <TestimonialCard recommendation={recommendation} />
+          ))
+        }
+      </SectionSnippet>
+      */
+    }
   </div>
 </BaseLayout>
 

@@ -7,11 +7,12 @@ Personal portfolio site for **Rovin Montano** — Astro, TypeScript, and plain C
 ## Sections
 
 - **Home** — introduction, LinkedIn link, resume preview, and snippets of other sections
-- **Samples** — academic, business, volunteer, formal, and creative work
-- **References** — contactable references
-- **Recommendations** — testimonials
+- **Samples** — academic, volunteer, and formal work
+- **Creative** — essays, prose, and a YouTube channel card
 
-All copy is placeholder data in `src/data/`. Edit those files to replace content.
+**References** and **Recommendations** are on hold until there's real content to show. Their pages, nav links, and home snippet are commented out / prefixed with `_` (see `src/pages/_references.astro`, `src/pages/_recommendations.astro`, `src/components/SiteNav.astro`, and `src/pages/index.astro`). To bring them back: drop the leading underscore on both page files, rename to `references.astro` / `recommendations.astro`, and uncomment the matching blocks in `SiteNav.astro` and `index.astro`.
+
+Most copy lives in `src/data/`. Edit those files to update content.
 
 ## Develop
 
@@ -46,10 +47,11 @@ Astro is configured with `site` + `base` in `astro.config.mjs` so assets and lin
 
 | File | What to change |
 |------|----------------|
-| `src/data/profile.ts` | Name, bio, LinkedIn URL, email, resume PDF link |
+| `src/data/profile.ts` | Name, bio, LinkedIn/YouTube URLs, email, resume PDF link |
 | `src/data/resume.ts` | Experience, education, skills |
-| `src/data/samples.ts` | Work and creative samples |
-| `src/data/references.ts` | References |
-| `src/data/recommendations.ts` | Testimonials |
+| `src/data/samples.ts` | Academic, volunteer, and formal work samples |
+| `src/data/creative.ts` | Essays, prose, and anthology posts |
+| `src/data/references.ts` | References (currently unused, see above) |
+| `src/data/recommendations.ts` | Testimonials (currently unused, see above) |
 | `src/styles/global.css` | Colors and glass tokens |
 | `astro.config.mjs` | `site` / `base` if you rename the repo or add a custom domain |

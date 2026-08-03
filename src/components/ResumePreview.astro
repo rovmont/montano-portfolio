@@ -2,6 +2,9 @@
 import GlassPanel from "./GlassPanel.astro";
 import { profile } from "../data/profile";
 import { resume } from "../data/resume";
+import { withBase } from "../utils/paths";
+
+const resumeHref = withBase(profile.resumePdfPath);
 ---
 
 <section class="resume-section" id="resume">
@@ -9,7 +12,10 @@ import { resume } from "../data/resume";
     <div class="section-header animate-in">
       <span class="section-label">Resume</span>
       <h2>Preview</h2>
-      <p>A styled placeholder sheet. Swap in your real PDF when ready.</p>
+      <p>
+        A snapshot of my education and recent experience. The downloadable PDF
+        includes the complete details.
+      </p>
     </div>
 
     <GlassPanel strong class="resume-shell animate-in delay-1">
@@ -18,7 +24,9 @@ import { resume } from "../data/resume";
           <h3>{profile.name}</h3>
           <p>{resume.headline}</p>
         </div>
-        <a class="btn btn-sage" href={profile.resumePdfUrl}>Download PDF</a>
+        <a class="btn btn-sage" href={resumeHref} download="Montano-Rovin-Resume.pdf">
+          Download PDF
+        </a>
       </div>
 
       <p class="resume-summary">{resume.summary}</p>

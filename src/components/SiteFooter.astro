@@ -8,10 +8,11 @@ const year = new Date().getFullYear();
   <div class="container footer-inner glass">
     <div>
       <p class="footer-brand">{profile.name}</p>
-      <p class="footer-note">Portfolio placeholder — content ready to replace.</p>
+      <p class="footer-note">Software Technology · human-centered systems · creative practice.</p>
     </div>
     <div class="footer-links">
       <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={profile.youtubeUrl} target="_blank" rel="noopener noreferrer">YouTube</a>
       <a href={`mailto:${profile.email}`}>{profile.email}</a>
     </div>
     <p class="footer-copy">© {year} {profile.name}</p>

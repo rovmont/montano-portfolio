@@ -1,4 +1,7 @@
 ---
+// NOTE: prefixed with `_` so Astro excludes this route from the build.
+// Rename this file to `references.astro` (and add the nav link back in
+// SiteNav.astro / the snippet in index.astro) once there's real content.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ReferenceCard from "../components/ReferenceCard.astro";
 import { references } from "../data/references";
@@ -6,7 +9,7 @@ import { references } from "../data/references";
 
 <BaseLayout
   title="References"
-  description="Professional and academic references — placeholder contacts."
+  description="Professional and academic references for Rovin Niño Montaño."
 >
   <div class="container">
     <header class="page-intro animate-in">

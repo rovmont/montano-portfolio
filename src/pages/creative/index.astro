@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CreativeCard from "../../components/CreativeCard.astro";
+import YouTubeCard from "../../components/YouTubeCard.astro";
+import { creativePosts } from "../../data/creative";
+---
+
+<BaseLayout
+  title="Creative"
+  description="Essays, prose, and videos by Rovin Niño Montaño."
+>
+  <div class="container">
+    <header class="page-intro animate-in">
+      <span class="section-label">Creative</span>
+      <h1>Writing archive</h1>
+      <p>Essays and proses, arranged in the order I wrote them.</p>
+    </header>
+
+    <div class="card-grid animate-in delay-1">
+      <YouTubeCard />
+      {creativePosts.map((post) => <CreativeCard post={post} />)}
+    </div>
+  </div>
+</BaseLayout>

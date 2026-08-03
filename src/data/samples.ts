@@ -2,8 +2,7 @@ export type SampleCategory =
   | "academic"
   | "business"
   | "volunteer"
-  | "formal"
-  | "creative";
+  | "formal";
 
 export type Sample = {
   id: string;
@@ -12,6 +11,8 @@ export type Sample = {
   summary: string;
   year: string;
   tags: string[];
+  url?: string;
+  repoUrl?: string;
 };
 
 export const sampleCategories: { id: SampleCategory; label: string }[] = [
@@ -19,97 +20,70 @@ export const sampleCategories: { id: SampleCategory; label: string }[] = [
   { id: "business", label: "Business" },
   { id: "volunteer", label: "Volunteer" },
   { id: "formal", label: "Formal" },
-  { id: "creative", label: "Creative" },
 ];
 
 export const samples: Sample[] = [
   {
-    id: "acad-1",
-    title: "Capstone Research Brief",
+    id: "acad-decimal32",
+    title: "IEEE 754 Decimal32 Simulator",
     category: "academic",
-    summary: "Placeholder academic project exploring systems thinking and applied research methods.",
-    year: "2023",
-    tags: ["Research", "Writing"],
+    summary:
+      "An interactive simulator for IEEE 754 decimal32 using DPD encoding, converting to binary and hex, comparing four rounding methods, and walking through arithmetic step by step. I set up the Astro foundation, shared UI, and deployment pipeline for our five-person team.",
+    year: "2026",
+    tags: ["Astro", "TypeScript", "IEEE 754", "DPD"],
+    url: "https://rovmont.github.io/CSARCH2-MACHINE-PROJECT-GROUP4/",
+    repoUrl: "https://github.com/rovmont/CSARCH2-MACHINE-PROJECT-GROUP4",
   },
   {
-    id: "acad-2",
-    title: "Seminar Presentation Deck",
+    id: "acad-bus-arb",
+    title: "A Deep Dive Into the Bus Arbitration System",
     category: "academic",
-    summary: "Placeholder coursework presentation on design, ethics, and technology.",
-    year: "2022",
-    tags: ["Presentation"],
+    summary:
+      "A retro-futuristic virtual exhibit on how CPU, DMA, and peripheral devices compete for a shared bus, built around an interactive simulator that lets you watch fixed-priority, round-robin, and daisy-chain arbitration play out in real time.",
+    year: "2026",
+    tags: ["Education", "Architecture", "Astro"],
+    url: "https://kekekoby.github.io/CSARCH2_S04_G4/",
+    repoUrl: "https://github.com/kekekoby/CSARCH2_S04_G4",
   },
   {
-    id: "biz-1",
-    title: "Client Onboarding Flow",
-    category: "business",
-    summary: "Placeholder business deliverable improving clarity in a multi-step onboarding journey.",
+    id: "acad-profs2pick",
+    title: "DLSU Profs2Pick",
+    category: "academic",
+    summary:
+      "A professor and course review platform built for SecDev with separate student, manager, and professor logins. Originally ran on Node, Express, and Supabase with Google OAuth; I focused on the UI/UX and role-based auth flows, and shipped a static demo with Playwright coverage for GitHub Pages.",
+    year: "2025",
+    tags: ["Node.js", "Security", "Playwright", "UI/UX"],
+    url: "https://rovmont.github.io/SecDevMP/",
+    repoUrl: "https://github.com/rovmont/SecDevMP",
+  },
+  {
+    id: "acad-labkita",
+    title: "LabKita! Laboratory Reservation",
+    category: "academic",
+    summary:
+      "A lab reservation app built for AppDev, covering bookings, profiles, and an admin panel across a four-person team. I led the frontend; this static demo keeps the original Pixelify and Bootstrap look running on seed data instead of a live database.",
     year: "2024",
-    tags: ["UX", "Process"],
+    tags: ["Frontend", "Express", "MongoDB", "Bootstrap"],
+    url: "https://rovmont.github.io/AppDevMP-LabRes/",
+    repoUrl: "https://github.com/rovmont/AppDevMP-LabRes",
   },
   {
-    id: "biz-2",
-    title: "Market Snapshot Report",
-    category: "business",
-    summary: "Placeholder analysis summarizing trends and opportunities for a fictional stakeholder.",
-    year: "2023",
-    tags: ["Analysis"],
-  },
-  {
-    id: "vol-1",
-    title: "Community Workshop Series",
+    id: "vol-skk",
+    title: "Simpleng Kristyanong Komunidad Platform",
     category: "volunteer",
-    summary: "Placeholder volunteer initiative supporting local learning sessions and mentorship.",
-    year: "2024",
-    tags: ["Community"],
+    summary:
+      "A web platform for an NGO that needed a clearer way to talk to donors, promote its scholars, and track donations. Designed around how the organization actually works day to day, not just how it looks.",
+    year: "2025",
+    tags: ["NGO", "Web", "HCD"],
   },
   {
-    id: "vol-2",
-    title: "Nonprofit Site Refresh",
-    category: "volunteer",
-    summary: "Placeholder contribution to a nonprofit's public presence and content structure.",
-    year: "2022",
-    tags: ["Web", "Content"],
-  },
-  {
-    id: "form-1",
-    title: "Policy Brief Template",
+    id: "form-chorale",
+    title: "Echoes of a Decade — Production Lead",
     category: "formal",
-    summary: "Placeholder formal document crafted for clarity, tone, and stakeholder alignment.",
-    year: "2023",
-    tags: ["Writing"],
-  },
-  {
-    id: "form-2",
-    title: "Conference Poster",
-    category: "formal",
-    summary: "Placeholder formal poster summarizing outcomes for a professional audience.",
-    year: "2021",
-    tags: ["Design"],
-  },
-  {
-    id: "cre-1",
-    title: "Visual Study: Soft Geometry",
-    category: "creative",
-    summary: "Placeholder creative exploration in color, form, and quiet motion.",
-    year: "2024",
-    tags: ["Visual"],
-  },
-  {
-    id: "cre-2",
-    title: "Short Essay Collection",
-    category: "creative",
-    summary: "Placeholder creative writing sample around place, craft, and attention.",
-    year: "2023",
-    tags: ["Writing"],
-  },
-  {
-    id: "cre-3",
-    title: "Sound Moodboard",
-    category: "creative",
-    summary: "Placeholder audio-visual moodboard for a fictional brand world.",
-    year: "2022",
-    tags: ["Sound", "Brand"],
+    summary:
+      "As Division Manager for Production and Logistics of the DLSU Chorale, I led the planning and technical setup behind major productions, serving as Project Head for our tenth-anniversary show, Echoes of a Decade.",
+    year: "2025–2026",
+    tags: ["Arts", "Leadership", "Production"],
   },
 ];
 
