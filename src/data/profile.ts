@@ -5,7 +5,7 @@ export const profile = {
   location: "General Trias, Cavite",
   email: "rovinmontano@hotmail.com",
   phone: "(+63) 991-539-6288",
-  linkedinUrl: "https://www.linkedin.com/in/rovin-ni%C3%B1o-monta%C3%B1o-7a4753211",
+  linkedinUrl: "https://www.linkedin.com/in/rovin-monta%C3%B1o-07960032b",
   youtubeUrl: "https://www.youtube.com/@justrovs7307",
   resumePdfPath: "/Montano-Rovin-Resume.pdf",
 } as const;
