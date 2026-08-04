@@ -1,6 +1,7 @@
 ---
 import type { Sample } from "../data/samples";
 import { sampleCategories } from "../data/samples";
+import { withBase } from "../utils/paths";
 
 interface Props {
   sample: Sample;
@@ -9,9 +10,21 @@ interface Props {
 const { sample } = Astro.props;
 const categoryLabel =
   sampleCategories.find((c) => c.id === sample.category)?.label ?? sample.category;
+
+const docHref = sample.docUrl ? withBase(sample.docUrl) : undefined;
+const hasExternalLinks = Boolean(sample.url || sample.repoUrl);
+// A card with only a PDF becomes one big link; otherwise the PDF joins the link row
+// so anchors never end up nested.
+const cardHref = !hasExternalLinks ? docHref : undefined;
+const CardTag = cardHref ? "a" : "article";
 ---
 
-<article class="work-card glass">
+<CardTag
+  class:list={["work-card", "glass", { linked: cardHref }]}
+  href={cardHref}
+  target={cardHref ? "_blank" : undefined}
+  rel={cardHref ? "noopener noreferrer" : undefined}
+>
   <div class="meta">
     <span class:list={["badge", sample.category]}>{categoryLabel}</span>
     <span class="year">{sample.year}</span>
@@ -22,7 +35,7 @@ const categoryLabel =
     {sample.tags.map((tag) => <li>{tag}</li>)}
   </ul>
   {
-    (sample.url || sample.repoUrl) && (
+    (hasExternalLinks || docHref) && (
       <div class="links">
         {sample.url && (
           <a href={sample.url} target="_blank" rel="noopener noreferrer">
@@ -34,10 +47,18 @@ const categoryLabel =
             Repository
           </a>
         )}
+        {docHref &&
+          (hasExternalLinks ? (
+            <a href={docHref} target="_blank" rel="noopener noreferrer">
+              View PDF
+            </a>
+          ) : (
+            <span class="doc-cue">View PDF →</span>
+          ))}
       </div>
     )
   }
-</article>
+</CardTag>
 
 <style>
   .work-card {
@@ -50,6 +71,10 @@ const categoryLabel =
       transform var(--duration) var(--ease-out),
       box-shadow var(--duration) var(--ease-out),
       border-color var(--duration) var(--ease-out);
+  }
+
+  .work-card.linked {
+    color: inherit;
   }
 
   .work-card:hover {
@@ -137,6 +162,16 @@ const categoryLabel =
   }
 
   .links a:hover {
+    color: var(--ink);
+  }
+
+  .doc-cue {
+    font-size: 0.88rem;
+    font-weight: 550;
+    color: var(--blue-600);
+  }
+
+  .work-card.linked:hover .doc-cue {
     color: var(--ink);
   }
 </style>

@@ -4,7 +4,7 @@ import { withBase, normalizePath } from "../utils/paths";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/samples", label: "Samples" },
+  { href: "/work", label: "Work" },
   { href: "/creative", label: "Creative" },
   // References and Recommendations are on hold until there's real content.
   // Re-enable once src/pages/_references.astro and _recommendations.astro
@@ -137,7 +137,7 @@ const current = normalizePath(Astro.url.pathname);
   }
 
   .site-nav.scrolled {
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(18px) saturate(1.4);
     -webkit-backdrop-filter: blur(18px) saturate(1.4);
     border-bottom-color: var(--glass-border-soft);
@@ -185,23 +185,18 @@ const current = normalizePath(Astro.url.pathname);
 
   .nav-link:hover {
     color: var(--ink);
-    background: rgba(217, 236, 248, 0.88);
-    border-color: rgba(143, 196, 230, 0.52);
-    box-shadow: 0 5px 16px rgba(58, 122, 163, 0.12);
-    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 10px rgba(26, 42, 54, 0.06);
   }
 
   .nav-link.active {
     color: var(--ink);
-    background: linear-gradient(
-      145deg,
-      rgba(143, 196, 230, 0.72),
-      rgba(217, 236, 248, 0.96)
-    );
-    border-color: rgba(106, 175, 217, 0.58);
+    background: rgba(255, 255, 255, 0.68);
+    border-color: rgba(255, 255, 255, 0.85);
     box-shadow:
-      0 5px 16px rgba(58, 122, 163, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      0 2px 12px rgba(26, 42, 54, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
   }
 
   .nav-toggle {
@@ -297,17 +292,9 @@ const current = normalizePath(Astro.url.pathname);
       padding: 0.85rem 1rem;
     }
 
-    .nav-link:hover {
-      transform: none;
-    }
-
     .nav-link.active {
-      background: linear-gradient(
-        145deg,
-        rgba(143, 196, 230, 0.78),
-        rgba(217, 236, 248, 0.98)
-      );
-      border-color: rgba(74, 150, 196, 0.62);
+      background: rgba(255, 255, 255, 0.78);
+      border-color: rgba(255, 255, 255, 0.95);
     }
   }
 </style>

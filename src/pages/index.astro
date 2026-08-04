@@ -18,7 +18,9 @@ import { creativePosts } from "../data/creative";
 // import { recommendations } from "../data/recommendations";
 import { withBase } from "../utils/paths";
 
-const samplePreview = samples.filter((s) => s.category === "academic").slice(0, 3);
+const samplePreview = ["acad-marikina-hazard", "acad-bus-arb", "acad-profs2pick"]
+  .map((id) => samples.find((s) => s.id === id))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
 const creativePreview = creativePosts.slice(-2).reverse();
 // const referencePreview = references.slice(0, 2);
 // const recommendationPreview = recommendations.slice(0, 2);
@@ -43,10 +45,10 @@ const creativePreview = creativePosts.slice(-2).reverse();
 
   <div class="container">
     <SectionSnippet
-      label="Samples"
+      label="Work"
       title="Selected work"
-      description="Academic builds with live demos: Decimal32, Profs2Pick, LabKita!, and more."
-      href={withBase("/samples")}
+      description="Research papers, course projects, and live demos from Software Technology."
+      href={withBase("/work")}
     >
       {samplePreview.map((sample) => <WorkCard sample={sample} />)}
     </SectionSnippet>

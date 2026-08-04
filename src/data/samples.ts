@@ -13,6 +13,8 @@ export type Sample = {
   tags: string[];
   url?: string;
   repoUrl?: string;
+  /** Path to a PDF in /public, opened in the browser's viewer */
+  docUrl?: string;
 };
 
 export const sampleCategories: { id: SampleCategory; label: string }[] = [
@@ -68,6 +70,36 @@ export const samples: Sample[] = [
     repoUrl: "https://github.com/rovmont/AppDevMP-LabRes",
   },
   {
+    id: "acad-marikina-hazard",
+    title: "Spatial Analysis of Multi-Hazard Risk in Marikina City",
+    category: "academic",
+    summary:
+      "A DATA401 mapping project on which schools, hospitals, and emergency services in Marikina sit inside flood zones or beside the West Valley Fault. Layered NOAH hazard maps, PHIVOLCS fault data, and OpenStreetMap facilities to score every barangay by exposure and by how many residents share a single facility.",
+    year: "2026",
+    tags: ["GIS", "Spatial Analysis", "Data Science", "Disaster Risk"],
+    docUrl: "/Marikina-Multi-Hazard-Spatial-Analysis.pdf",
+  },
+  {
+    id: "acad-kinship-chatbot",
+    title: "Logic-Based Family Relationship Chatbot",
+    category: "academic",
+    summary:
+      "A CSINTSY chatbot that takes plain sentences like “Alice is the mother of Bob,” turns them into Prolog facts, and answers questions it was never directly told. Built on FastAPI and SWI-Prolog through PySwip, with rules that infer extended kin and reject impossible family trees.",
+    year: "2025",
+    tags: ["Prolog", "FastAPI", "Python", "Logic Programming"],
+    docUrl: "/Logic-Based-Family-Relationship-Chatbot.pdf",
+  },
+  {
+    id: "acad-emotion-singing",
+    title: "Tuning Into Emotion",
+    category: "academic",
+    summary:
+      "A comparative study on whether cleaning up audio helps a model read emotion in Filipino singing. We recorded twenty songs in an ordinary room, ran one copy through noise reduction and spectral balancing, then compared Random Forest and SVM models trained on raw versus preprocessed audio fused with TF-IDF lyric features.",
+    year: "2026",
+    tags: ["Machine Learning", "Affective Computing", "Librosa", "Research"],
+    docUrl: "/Tuning-Into-Emotion-Singing-Emotion-Recognition.pdf",
+  },
+  {
     id: "vol-skk",
     title: "Simpleng Kristyanong Komunidad Platform",
     category: "volunteer",
@@ -87,6 +119,18 @@ export const samples: Sample[] = [
   },
 ];
 
+function sampleYearStart(year: string): number {
+  const match = year.match(/\d{4}/);
+  return match ? Number(match[0]) : 0;
+}
+
 export function samplesByCategory(category: SampleCategory): Sample[] {
-  return samples.filter((s) => s.category === category);
+  return samples
+    .filter((s) => s.category === category)
+    .slice()
+    .sort((a, b) => {
+      const yearDiff = sampleYearStart(b.year) - sampleYearStart(a.year);
+      if (yearDiff !== 0) return yearDiff;
+      return a.title.localeCompare(b.title, "en", { sensitivity: "base" });
+    });
 }

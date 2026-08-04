@@ -7,7 +7,7 @@ Personal portfolio site for **Rovin Montano** — Astro, TypeScript, and plain C
 ## Sections
 
 - **Home** — introduction, LinkedIn link, resume preview, and snippets of other sections
-- **Samples** — academic, volunteer, and formal work
+- **Work** — academic, volunteer, and formal projects and roles
 - **Creative** — essays, prose, and a YouTube channel card
 
 **References** and **Recommendations** are on hold until there's real content to show. Their pages, nav links, and home snippet are commented out / prefixed with `_` (see `src/pages/_references.astro`, `src/pages/_recommendations.astro`, `src/components/SiteNav.astro`, and `src/pages/index.astro`). To bring them back: drop the leading underscore on both page files, rename to `references.astro` / `recommendations.astro`, and uncomment the matching blocks in `SiteNav.astro` and `index.astro`.
@@ -49,7 +49,7 @@ Astro is configured with `site` + `base` in `astro.config.mjs` so assets and lin
 |------|----------------|
 | `src/data/profile.ts` | Name, bio, LinkedIn/YouTube URLs, email, resume PDF link |
 | `src/data/resume.ts` | Experience, education, skills |
-| `src/data/samples.ts` | Academic, volunteer, and formal work samples |
+| `src/data/samples.ts` | Academic, volunteer, and formal work entries |
 | `src/data/creative.ts` | Essays, prose, and anthology posts |
 | `src/data/references.ts` | References (currently unused, see above) |
 | `src/data/recommendations.ts` | Testimonials (currently unused, see above) |
