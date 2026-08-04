@@ -137,9 +137,9 @@ const current = normalizePath(Astro.url.pathname);
   }
 
   .site-nav.scrolled {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(18px) saturate(1.4);
+    background: rgba(255, 255, 255, 0.60);
     -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    backdrop-filter: blur(18px) saturate(1.4);
     border-bottom-color: var(--glass-border-soft);
     box-shadow: 0 4px 24px rgba(58, 122, 163, 0.08);
   }
@@ -209,6 +209,7 @@ const current = normalizePath(Astro.url.pathname);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     cursor: pointer;
   }
@@ -242,8 +243,8 @@ const current = normalizePath(Astro.url.pathname);
 
     .site-nav.menu-open {
       background: var(--blue-50);
-      backdrop-filter: blur(22px) saturate(1.25);
       -webkit-backdrop-filter: blur(22px) saturate(1.25);
+      backdrop-filter: blur(22px) saturate(1.25);
       border-bottom-color: rgba(255, 255, 255, 0.8);
       box-shadow: 0 8px 28px rgba(58, 122, 163, 0.13);
     }
@@ -270,8 +271,8 @@ const current = normalizePath(Astro.url.pathname);
       padding: 0.75rem;
       border-radius: var(--radius-md);
       background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(20px) saturate(1.4);
       -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      backdrop-filter: blur(20px) saturate(1.4);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
       opacity: 0;
